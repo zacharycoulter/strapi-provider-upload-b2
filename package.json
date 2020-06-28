@@ -10,5 +10,21 @@
   "license": "MIT",
   "dependencies": {
     "backblaze-b2": "^1.5.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zacharycoulter/strapi-provider-upload-b2.git"
+  },
+  "keywords": [
+    "strapi",
+    "plugin",
+    "upload",
+    "provider",
+    "backblaze",
+    "b2"
+  ],
+  "bugs": {
+    "url": "https://github.com/zacharycoulter/strapi-provider-upload-b2/issues"
+  },
+  "homepage": "https://github.com/zacharycoulter/strapi-provider-upload-b2#readme"
 }
