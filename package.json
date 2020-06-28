@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "APEZ",
+  "author": "Zachary Coulter",
   "license": "MIT",
   "dependencies": {
     "backblaze-b2": "^1.5.0"
@@ -27,5 +27,7 @@
     "url": "https://github.com/zacharycoulter/strapi-provider-upload-b2/issues"
   },
   "homepage": "https://github.com/zacharycoulter/strapi-provider-upload-b2#readme",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
