@@ -26,5 +26,6 @@
   "bugs": {
     "url": "https://github.com/zacharycoulter/strapi-provider-upload-b2/issues"
   },
-  "homepage": "https://github.com/zacharycoulter/strapi-provider-upload-b2#readme"
+  "homepage": "https://github.com/zacharycoulter/strapi-provider-upload-b2#readme",
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
 }
