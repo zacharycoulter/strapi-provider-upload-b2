@@ -1,0 +1,14 @@
+{
+  "name": "strapi-provider-upload-b2",
+  "version": "1.0.0",
+  "description": "Backblaze B2 upload provider for Strapi v3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "APEZ",
+  "license": "MIT",
+  "dependencies": {
+    "backblaze-b2": "^1.5.0"
+  }
+}
