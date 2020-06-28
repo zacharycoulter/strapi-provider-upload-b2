@@ -1,25 +1,19 @@
 const B2 = require('backblaze-b2');
 
-function init(applicationKeyId, applicationKey) {
-  const b2 = new B2({
-    applicationKeyId: applicationKeyId,
-    applicationKey: applicationKey,
-    retry: { retries: 3 }
-  });
-
-  return { b2, authorization: b2.authorize() };
-}
-
 module.exports = {
   init(providerOptions) {
-    const { b2, authorization } = init(providerOptions.applicationKeyId, providerOptions.applicationKey);
+    const b2 = new B2({
+      applicationKeyId: providerOptions.applicationKeyId,
+      applicationKey: providerOptions.applicationKey,
+      retry: { retries: 3 }
+    });
 
     return {
       upload: async (file) => {
-        const { downloadUrl } = await authorization.then(res => res.data)
-            , { bucketId } = await b2.getBucket({ bucketName: providerOptions.bucket }).then(res => res.data.buckets[0])
-            , { uploadUrl, uploadAuthToken } = await b2.getUploadUrl(bucketId).then(res => res.data)
-            , fileName = (file.path ? `${file.path}/` : '') + file.hash + file.ext;
+        const { downloadUrl } = await b2.authorize().then(res => res.data);
+        const { bucketId } = await b2.getBucket({ bucketName: providerOptions.bucket }).then(res => res.data.buckets[0]);
+        const { uploadUrl, authorizationToken: uploadAuthToken } = await b2.getUploadUrl(bucketId).then(res => res.data);
+        const fileName = (file.path ? `${file.path}/` : '') + file.hash + file.ext;
 
         await b2.uploadFile({
           uploadAuthToken,
@@ -29,8 +23,8 @@ module.exports = {
           data:Buffer.from(file.buffer, 'binary')
         });
 
-        file.url = `${downloadUrl}/file/${providerOptions.bucket}/${filePathName}`;
-        strapi.log.debug(filePathName, 'uploaded to', providerOptions.bucket,'on B2')
+        file.url = `${downloadUrl}/file/${providerOptions.bucket}/${fileName}`;
+        strapi.log.debug(fileName, 'uploaded to', providerOptions.bucket,'on B2')
       },
       delete: async (file) => {
         const { bucketId } = await b2.getBucket({ bucketName: providerOptions.bucket }).then(res => res.data.buckets[0])
