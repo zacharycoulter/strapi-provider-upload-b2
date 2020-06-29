@@ -6,7 +6,7 @@ Backblaze B2 upload provider for Strapi v3
 ## How to install
 To install this provider provider run:
 
-    npm run install strapi-provider-upload-b2
+    npm i strapi-provider-upload-b2 --save
 
 To enable the provider, create or edit the file at `./config/plugins.js`
   
